@@ -26,8 +26,7 @@ Para promover uma boa separação de responsabilidades e facilitar a manutençã
     - Convites: um conjunto de convites pendentes (para gerenciar o fluxo de solicitação/aceitação de amizade).  
     - Recados: uma fila (FIFO) de mensagens recebidas, para garantir a ordem de leitura.
 
-## 3. Persistência e Gerenciamento de Sessões![Uploading Editor _ Mermaid Chart-2025-03-25-151523.svg…]()
-
+## 3. Persistência e Gerenciamento de Sessões
 
 A persistência é implementada através da serialização dos objetos da classe `Usuario` (armazenados em um `Map` na classe `Sistema`).  
 - **Salvar Dados:** O método `encerrarSistema()` serializa o `Map` de usuários e grava em um arquivo ("dados.dat").  
@@ -39,7 +38,7 @@ A persistência é implementada através da serialização dos objetos da classe
 A seguir, um diagrama de classes  ilustrando os principais componentes do sistema:
 
 
-[adicionar]
+![alt text](<Editor _ Mermaid Chart-2025-03-25-151523.svg>)
 
 
 ## 5. Conclusão
