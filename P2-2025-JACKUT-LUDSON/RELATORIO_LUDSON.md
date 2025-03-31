@@ -41,6 +41,8 @@ A seguir, um diagrama de classes  ilustrando os principais componentes do sistem
 ![alt text](<Editor _ Mermaid Chart-2025-03-25-151523.svg>)
 
 
+
+
 ## 5. Conclusão
 
 O design do sistema Jackut foi planejado para garantir:
