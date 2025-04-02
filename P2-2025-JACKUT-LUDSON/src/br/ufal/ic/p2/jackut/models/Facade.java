@@ -4,6 +4,31 @@ package br.ufal.ic.p2.jackut.models;
  * Classe de fachada para o sistema Jackut.
  * Fornece uma interface simplificada para os testes EasyAccept.
  */
+/**
+ * A classe Facade atua como uma interface simplificada para interagir com o sistema.
+ * Ela encapsula a lógica do sistema e fornece métodos para gerenciar usuários, sessões,
+ * amigos e recados, além de permitir a inicialização, reset e encerramento do sistema.
+ *
+ * Métodos disponíveis:
+ * - zerarSistema(): Reseta o sistema, apagando todos os dados e sessões.
+ * - criarUsuario(String login, String senha, String nome): Cria um novo usuário no sistema.
+ * - abrirSessao(String login, String senha): Abre uma sessão para um usuário autenticado.
+ * - getAtributoUsuario(String login, String atributo): Obtém um atributo de um usuário.
+ * - editarPerfil(String id, String atributo, String valor): Edita o perfil de um usuário.
+ * - adicionarAmigo(String id, String amigo): Adiciona um amigo a um usuário.
+ * - ehAmigo(String id, String amigo): Verifica se dois usuários são amigos.
+ * - getAmigos(String login): Obtém a lista de amigos de um usuário.
+ * - enviarRecado(String id, String destinatario, String recado): Envia um recado para um usuário.
+ * - lerRecado(String id): Lê os recados de um usuário.
+ * - encerrarSistema(): Encerra o sistema, salvando os dados e fechando as sessões.
+ *
+ * Exceções:
+ * - Os métodos podem lançar exceções caso os parâmetros fornecidos sejam inválidos
+ *   ou caso ocorram erros durante a execução das operações.
+ *
+ * Observação:
+ * - A classe Facade depende de uma instância da classe Sistema para realizar as operações.
+ */
 public class Facade {
     private Sistema sistema;
 

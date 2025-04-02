@@ -8,6 +8,43 @@ import java.util.*;
  * Classe principal do sistema Jackut.
  * Gerencia usuários, sessões, amigos, recados e persistência de dados.
  */
+/**
+ * Classe que representa o sistema principal de gerenciamento de usuários, sessões,
+ * amizades e recados. Implementa a interface Serializable para persistência de dados.
+ * 
+ * <p>Principais funcionalidades:
+ * <ul>
+ *   <li>Gerenciamento de usuários (criação, edição e recuperação de atributos).</li>
+ *   <li>Gerenciamento de sessões de usuários autenticados.</li>
+ *   <li>Gerenciamento de amizades entre usuários.</li>
+ *   <li>Envio e leitura de recados entre usuários.</li>
+ *   <li>Persistência de dados em arquivo.</li>
+ * </ul>
+ * 
+ * <p>Exceções específicas são lançadas para tratar erros como login inválido, 
+ * usuário não cadastrado, tentativa de adicionar a si mesmo como amigo, entre outros.
+ * 
+ * <p>O sistema utiliza um mapa de usuários persistente e um mapa de sessões transitório.
+ * 
+ * <p>Principais métodos:
+ * <ul>
+ *   <li>{@link #criarUsuario(String, String, String)}: Cria um novo usuário no sistema.</li>
+ *   <li>{@link #abrirSessao(String, String)}: Abre uma sessão para um usuário autenticado.</li>
+ *   <li>{@link #getAtributoUsuario(String, String)}: Recupera um atributo específico de um usuário.</li>
+ *   <li>{@link #editarPerfil(String, String, String)}: Edita o perfil de um usuário.</li>
+ *   <li>{@link #getAmigos(String)}: Retorna os amigos de um usuário.</li>
+ *   <li>{@link #ehAmigo(String, String)}: Verifica se dois usuários são amigos.</li>
+ *   <li>{@link #adicionarAmigo(String, String)}: Adiciona um amigo ao usuário.</li>
+ *   <li>{@link #enviarRecado(String, String, String)}: Envia um recado de um usuário para outro.</li>
+ *   <li>{@link #lerRecado(String)}: Lê o recado de um usuário.</li>
+ *   <li>{@link #encerrarSistema()}: Salva os dados e encerra o sistema.</li>
+ *   <li>{@link #zerarSistema()}: Reseta o sistema, apagando todos os dados e sessões.</li>
+ * </ul>
+ * 
+ * <p>O sistema também carrega automaticamente os dados persistidos ao ser inicializado.
+ * 
+ *
+ */
 public class Sistema implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -33,18 +70,15 @@ public class Sistema implements Serializable {
      * @param nome Nome do usuário.
      * @throws LoginInvalidoException Se o login for inválido.
      * @throws SenhaInvalidaException Se a senha for inválida.
-     * @throws Exception Se o login já existir.
+     * @throws UsuarioNaoCadastradoException Se o login já existir.
      */
-    public void criarUsuario(String login, String senha, String nome) throws LoginInvalidoException, SenhaInvalidaException, Exception {
-        if (login == null || login.trim().isEmpty()) {
+    public void criarUsuario(String login, String senha, String nome) throws LoginInvalidoException, SenhaInvalidaException, UsuarioNaoCadastradoException {
+        if (login == null || login.trim().isEmpty())
             throw new LoginInvalidoException();
-        }
-        if (senha == null || senha.trim().isEmpty()) {
+        if (senha == null || senha.trim().isEmpty())
             throw new SenhaInvalidaException();
-        }
-        if (usuarios.containsKey(login)) {
-            throw new Exception("Conta com esse nome já existe.");
-        }
+        if (usuarios.containsKey(login))
+            throw new UsuarioNaoCadastradoException();
         usuarios.put(login, new Usuario(login, senha, nome));
     }
 
@@ -74,14 +108,12 @@ public class Sistema implements Serializable {
      * @param login O identificador de login do usuário.
      * @param atributo O nome do atributo a ser recuperado.
      * @return O valor do atributo especificado para o usuário.
-     * @throws UsuarioNaoCadastradoException Se o usuário não estiver cadastrado.
-     * @throws AtributoNaoPreenchidoException Se o atributo não puder ser recuperado.
+     * @throws Exception Se o usuário não estiver cadastrado ou o atributo não puder ser recuperado.
      */
-    public String getAtributoUsuario(String login, String atributo) throws UsuarioNaoCadastradoException, AtributoNaoPreenchidoException {
+    public String getAtributoUsuario(String login, String atributo) throws Exception {
         Usuario usuario = usuarios.get(login);
-        if (usuario == null) {
-            throw new UsuarioNaoCadastradoException();
-        }
+        if (usuario == null)
+            throw new Exception("Usuário não cadastrado.");
         return usuario.getAtributo(atributo);
     }
 
@@ -162,19 +194,11 @@ public class Sistema implements Serializable {
             throw new UsuarioNaoCadastradoException();
         }
 
-        if (remetente.getAmigos().contains(amigo)) {
-            throw new UsuarioJaAmigoException();
-        }
-
         if (remetente.getConvitesRecebidos().contains(amigo)) {
             remetente.adicionarAmigo(amigo);
             alvo.adicionarAmigo(remetenteLogin);
             remetente.removerConvite(amigo);
             return;
-        }
-
-        if (alvo.getConvitesRecebidos().contains(remetenteLogin)) {
-            throw new UsuarioJaAmigoEsperandoException();
         }
 
         alvo.adicionarConvite(remetenteLogin);
@@ -250,7 +274,6 @@ public class Sistema implements Serializable {
     public void zerarSistema() {
         usuarios.clear();
         sessoes.clear();
-        // Opcional: apagar o arquivo de persistência
         File file = new File(ARQUIVO);
         if (file.exists()) {
             file.delete();

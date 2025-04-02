@@ -8,6 +8,32 @@ import java.util.*;
  * Representa um usuário do sistema Jackut.
  * Contém informações de perfil, amigos, convites e recados.
  */
+/**
+ * A classe Usuario representa um usuário de uma rede social, contendo informações
+ * como login, senha, nome, amigos, convites recebidos, atributos personalizados
+ * e recados. Ela fornece métodos para gerenciar essas informações e interagir
+ * com outros usuários.
+ *
+ * <p>Principais funcionalidades:
+ * <ul>
+ *   <li>Verificar a senha do usuário.</li>
+ *   <li>Gerenciar atributos personalizados do perfil.</li>
+ *   <li>Adicionar e remover amigos.</li>
+ *   <li>Gerenciar convites de amizade recebidos.</li>
+ *   <li>Adicionar e ler recados.</li>
+ * </ul>
+ *
+ * <p>Exceções personalizadas:
+ * <ul>
+ *   <li>{@link AtributoNaoPreenchidoException} - Lançada quando um atributo solicitado não está preenchido.</li>
+ *   <li>{@link UsuarioJaAmigoEsperandoException} - Lançada ao tentar adicionar um convite já existente.</li>
+ *   <li>{@link UsuarioJaAmigoException} - Lançada ao tentar adicionar um amigo já existente.</li>
+ *   <li>{@link NaoHaRecadosException} - Lançada ao tentar ler um recado quando não há nenhum disponível.</li>
+ * </ul>
+ *
+ * <p>Esta classe implementa a interface {@link Serializable}, permitindo que
+ * objetos desta classe sejam serializados.
+ */
 public class Usuario implements Serializable {
     private String login; // Login do usuário
     private String senha; // Senha do usuário

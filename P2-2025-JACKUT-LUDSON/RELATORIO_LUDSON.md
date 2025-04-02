@@ -1,4 +1,4 @@
-# Relatório de Design do Sistema Jackut
+# Relatório de Design do Sistema Jackut -- Milestone 1
 
 ## 1. Introdução
 
