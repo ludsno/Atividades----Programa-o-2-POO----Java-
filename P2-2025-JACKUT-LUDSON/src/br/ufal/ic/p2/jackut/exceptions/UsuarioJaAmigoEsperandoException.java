@@ -2,6 +2,6 @@ package br.ufal.ic.p2.jackut.exceptions;
 
 public class UsuarioJaAmigoEsperandoException extends Exception {
     public UsuarioJaAmigoEsperandoException() {
-        super("Usu√°rio j√° est√° adicionado como amigo, esperando aceita√ß√£o do convite.");
+        super("Usu·rio j· est· adicionado como amigo, esperando aceitaÁ„o do convite.");
     }
 }

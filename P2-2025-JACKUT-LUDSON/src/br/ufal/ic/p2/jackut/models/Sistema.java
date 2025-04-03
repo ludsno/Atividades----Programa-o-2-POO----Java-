@@ -6,53 +6,53 @@ import java.util.*;
 
 /**
  * Classe principal do sistema Jackut.
- * Gerencia usu√°rios, sess√µes, amigos, recados e persist√™ncia de dados.
+ * Gerencia usu·rios, sessıes, amigos, recados e persistÍncia de dados.
  */
 /**
- * Classe que representa o sistema principal de gerenciamento de usu√°rios, sess√µes,
- * amizades e recados. Implementa a interface Serializable para persist√™ncia de dados.
+ * Classe que representa o sistema principal de gerenciamento de usu·rios, sessıes,
+ * amizades e recados. Implementa a interface Serializable para persistÍncia de dados.
  * 
  * <p>Principais funcionalidades:
  * <ul>
- *   <li>Gerenciamento de usu√°rios (cria√ß√£o, edi√ß√£o e recupera√ß√£o de atributos).</li>
- *   <li>Gerenciamento de sess√µes de usu√°rios autenticados.</li>
- *   <li>Gerenciamento de amizades entre usu√°rios.</li>
- *   <li>Envio e leitura de recados entre usu√°rios.</li>
- *   <li>Persist√™ncia de dados em arquivo.</li>
+ *   <li>Gerenciamento de usu·rios (criaÁ„o, ediÁ„o e recuperaÁ„o de atributos).</li>
+ *   <li>Gerenciamento de sessıes de usu·rios autenticados.</li>
+ *   <li>Gerenciamento de amizades entre usu·rios.</li>
+ *   <li>Envio e leitura de recados entre usu·rios.</li>
+ *   <li>PersistÍncia de dados em arquivo.</li>
  * </ul>
  * 
- * <p>Exce√ß√µes espec√≠ficas s√£o lan√ßadas para tratar erros como login inv√°lido, 
- * usu√°rio n√£o cadastrado, tentativa de adicionar a si mesmo como amigo, entre outros.
+ * <p>ExceÁıes especÌficas s„o lanÁadas para tratar erros como login inv·lido, 
+ * usu·rio n„o cadastrado, tentativa de adicionar a si mesmo como amigo, entre outros.
  * 
- * <p>O sistema utiliza um mapa de usu√°rios persistente e um mapa de sess√µes transit√≥rio.
+ * <p>O sistema utiliza um mapa de usu·rios persistente e um mapa de sessıes transitÛrio.
  * 
- * <p>Principais m√©todos:
+ * <p>Principais mÈtodos:
  * <ul>
- *   <li>{@link #criarUsuario(String, String, String)}: Cria um novo usu√°rio no sistema.</li>
- *   <li>{@link #abrirSessao(String, String)}: Abre uma sess√£o para um usu√°rio autenticado.</li>
- *   <li>{@link #getAtributoUsuario(String, String)}: Recupera um atributo espec√≠fico de um usu√°rio.</li>
- *   <li>{@link #editarPerfil(String, String, String)}: Edita o perfil de um usu√°rio.</li>
- *   <li>{@link #getAmigos(String)}: Retorna os amigos de um usu√°rio.</li>
- *   <li>{@link #ehAmigo(String, String)}: Verifica se dois usu√°rios s√£o amigos.</li>
- *   <li>{@link #adicionarAmigo(String, String)}: Adiciona um amigo ao usu√°rio.</li>
- *   <li>{@link #enviarRecado(String, String, String)}: Envia um recado de um usu√°rio para outro.</li>
- *   <li>{@link #lerRecado(String)}: L√™ o recado de um usu√°rio.</li>
+ *   <li>{@link #criarUsuario(String, String, String)}: Cria um novo usu·rio no sistema.</li>
+ *   <li>{@link #abrirSessao(String, String)}: Abre uma sess„o para um usu·rio autenticado.</li>
+ *   <li>{@link #getAtributoUsuario(String, String)}: Recupera um atributo especÌfico de um usu·rio.</li>
+ *   <li>{@link #editarPerfil(String, String, String)}: Edita o perfil de um usu·rio.</li>
+ *   <li>{@link #getAmigos(String)}: Retorna os amigos de um usu·rio.</li>
+ *   <li>{@link #ehAmigo(String, String)}: Verifica se dois usu·rios s„o amigos.</li>
+ *   <li>{@link #adicionarAmigo(String, String)}: Adiciona um amigo ao usu·rio.</li>
+ *   <li>{@link #enviarRecado(String, String, String)}: Envia um recado de um usu·rio para outro.</li>
+ *   <li>{@link #lerRecado(String)}: LÍ o recado de um usu·rio.</li>
  *   <li>{@link #encerrarSistema()}: Salva os dados e encerra o sistema.</li>
- *   <li>{@link #zerarSistema()}: Reseta o sistema, apagando todos os dados e sess√µes.</li>
+ *   <li>{@link #zerarSistema()}: Reseta o sistema, apagando todos os dados e sessıes.</li>
  * </ul>
  * 
- * <p>O sistema tamb√©m carrega automaticamente os dados persistidos ao ser inicializado.
+ * <p>O sistema tambÈm carrega automaticamente os dados persistidos ao ser inicializado.
  * 
  *
  */
 public class Sistema implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    // Mapa de usu√°rios cadastrados no sistema
+    // Mapa de usu·rios cadastrados no sistema
     private Map<String, Usuario> usuarios = new HashMap<>();
-    // Mapa de sess√µes ativas (n√£o persistente)
+    // Mapa de sessıes ativas (n„o persistente)
     private transient Map<String, String> sessoes = new HashMap<>();
-    // Nome do arquivo de persist√™ncia
+    // Nome do arquivo de persistÍncia
     private static final String ARQUIVO = "dados.dat";
 
     /**
@@ -64,13 +64,13 @@ public class Sistema implements Serializable {
     }
 
     /**
-     * Cria um novo usu√°rio no sistema.
-     * @param login Login do usu√°rio.
-     * @param senha Senha do usu√°rio.
-     * @param nome Nome do usu√°rio.
-     * @throws LoginInvalidoException Se o login for inv√°lido.
-     * @throws SenhaInvalidaException Se a senha for inv√°lida.
-     * @throws UsuarioNaoCadastradoException Se o login j√° existir.
+     * Cria um novo usu·rio no sistema.
+     * @param login Login do usu·rio.
+     * @param senha Senha do usu·rio.
+     * @param nome Nome do usu·rio.
+     * @throws LoginInvalidoException Se o login for inv·lido.
+     * @throws SenhaInvalidaException Se a senha for inv·lida.
+     * @throws UsuarioNaoCadastradoException Se o login j· existir.
      */
     public void criarUsuario(String login, String senha, String nome) throws LoginInvalidoException, SenhaInvalidaException, UsuarioNaoCadastradoException {
         if (login == null || login.trim().isEmpty())
@@ -83,11 +83,11 @@ public class Sistema implements Serializable {
     }
 
     /**
-     * Abre uma sess√£o para um usu√°rio autenticado.
-     * @param login Login do usu√°rio.
-     * @param senha Senha do usu√°rio.
-     * @return ID da sess√£o criada.
-     * @throws LoginOuSenhaInvalidosException Se o login ou senha forem inv√°lidos.
+     * Abre uma sess„o para um usu·rio autenticado.
+     * @param login Login do usu·rio.
+     * @param senha Senha do usu·rio.
+     * @return ID da sess„o criada.
+     * @throws LoginOuSenhaInvalidosException Se o login ou senha forem inv·lidos.
      */
     public String abrirSessao(String login, String senha) throws LoginOuSenhaInvalidosException {
         if (!usuarios.containsKey(login)) {
@@ -103,81 +103,81 @@ public class Sistema implements Serializable {
     }
 
     /**
-     * Recupera um atributo espec√≠fico de um usu√°rio com base no login.
+     * Recupera um atributo especÌfico de um usu·rio com base no login.
      *
-     * @param login O identificador de login do usu√°rio.
+     * @param login O identificador de login do usu·rio.
      * @param atributo O nome do atributo a ser recuperado.
-     * @return O valor do atributo especificado para o usu√°rio.
-     * @throws Exception Se o usu√°rio n√£o estiver cadastrado ou o atributo n√£o puder ser recuperado.
+     * @return O valor do atributo especificado para o usu·rio.
+     * @throws Exception Se o usu·rio n„o estiver cadastrado ou o atributo n„o puder ser recuperado.
      */
     public String getAtributoUsuario(String login, String atributo) throws Exception {
         Usuario usuario = usuarios.get(login);
         if (usuario == null)
-            throw new Exception("Usu√°rio n√£o cadastrado.");
+            throw new Exception("Usu·rio n„o cadastrado.");
         return usuario.getAtributo(atributo);
     }
 
     /**
-     * Edita o perfil de um usu√°rio com base no atributo e valor fornecidos.
+     * Edita o perfil de um usu·rio com base no atributo e valor fornecidos.
      *
-     * @param id O identificador da sess√£o do usu√°rio.
-     * @param atributo O atributo do perfil que ser√° editado.
+     * @param id O identificador da sess„o do usu·rio.
+     * @param atributo O atributo do perfil que ser· editado.
      * @param valor O novo valor para o atributo.
-     * @throws Exception Se o usu√°rio n√£o estiver cadastrado ou a sess√£o n√£o for v√°lida.
+     * @throws Exception Se o usu·rio n„o estiver cadastrado ou a sess„o n„o for v·lida.
      */
     public void editarPerfil (String id, String atributo, String valor) throws Exception {
         if (!sessoes.containsKey(id)) {
-            throw new Exception("Usu√°rio n√£o cadastrado.");
+            throw new Exception("Usu·rio n„o cadastrado.");
         }
         String login = sessoes.get(id);
         Usuario usuario = usuarios.get(login);
         if (usuario == null) {
-            throw new Exception("Usu√°rio n√£o cadastrado.");
+            throw new Exception("Usu·rio n„o cadastrado.");
         }
         usuario.editarPerfil(atributo, valor);
     }
 
     /**
-     * Retorna uma representa√ß√£o em formato de string dos amigos de um usu√°rio.
+     * Retorna uma representaÁ„o em formato de string dos amigos de um usu·rio.
      *
-     * @param login O login do usu√°rio cujo amigos ser√£o listados.
-     * @return Uma string contendo os amigos do usu√°rio no formato "{amigo1,amigo2,...}".
-     * @throws Exception Se o usu√°rio com o login fornecido n√£o estiver cadastrado.
+     * @param login O login do usu·rio cujo amigos ser„o listados.
+     * @return Uma string contendo os amigos do usu·rio no formato "{amigo1,amigo2,...}".
+     * @throws Exception Se o usu·rio com o login fornecido n„o estiver cadastrado.
      */
     public String getAmigos(String login) throws Exception {
         Usuario usuario = usuarios.get(login);
         if (usuario == null) {
-            throw new Exception("Usu√°rio n√£o cadastrado.");
+            throw new Exception("Usu·rio n„o cadastrado.");
         }
         String amigosStr = String.join(",", usuario.getAmigos());
         return "{" + amigosStr + "}";
     }
 
     /**
-     * Verifica se um determinado usu√°rio √© amigo de outro.
+     * Verifica se um determinado usu·rio È amigo de outro.
      *
-     * @param login O login do usu√°rio que ser√° verificado.
-     * @param amigo O login do poss√≠vel amigo a ser verificado.
-     * @return true se o usu√°rio especificado for amigo, false caso contr√°rio.
-     * @throws Exception Se o usu√°rio com o login fornecido n√£o estiver cadastrado.
+     * @param login O login do usu·rio que ser· verificado.
+     * @param amigo O login do possÌvel amigo a ser verificado.
+     * @return true se o usu·rio especificado for amigo, false caso contr·rio.
+     * @throws Exception Se o usu·rio com o login fornecido n„o estiver cadastrado.
      */
     public boolean ehAmigo(String login, String amigo) throws Exception {
         Usuario usuario = usuarios.get(login);
         if (usuario == null) {
-            throw new Exception("Usu√°rio n√£o cadastrado.");
+            throw new Exception("Usu·rio n„o cadastrado.");
         }
         return usuario.getAmigos().contains(amigo);
     }
 
     /**
-     * Adiciona um amigo ao usu√°rio identificado pelo ID da sess√£o.
+     * Adiciona um amigo ao usu·rio identificado pelo ID da sess„o.
      *
-     * @param id O identificador da sess√£o do usu√°rio que est√° enviando o pedido de amizade.
-     * @param amigo O login do usu√°rio que ser√° adicionado como amigo.
-     * @throws UsuarioNaoCadastradoException Se o ID da sess√£o n√£o est√° associado a nenhum usu√°rio cadastrado.
-     * @throws UsuarioAdicionandoASiMesmoException Se o usu√°rio tentar adicionar a si mesmo como amigo.
-     * @throws UsuarioJaAmigoException Se o usu√°rio alvo j√° est√° adicionado como amigo.
-     * @throws UsuarioJaAmigoEsperandoException Se o usu√°rio alvo j√° recebeu um convite de amizade do remetente.
+     * @param id O identificador da sess„o do usu·rio que est· enviando o pedido de amizade.
+     * @param amigo O login do usu·rio que ser· adicionado como amigo.
+     * @throws UsuarioNaoCadastradoException Se o ID da sess„o n„o est· associado a nenhum usu·rio cadastrado.
+     * @throws UsuarioAdicionandoASiMesmoException Se o usu·rio tentar adicionar a si mesmo como amigo.
+     * @throws UsuarioJaAmigoException Se o usu·rio alvo j· est· adicionado como amigo.
+     * @throws UsuarioJaAmigoEsperandoException Se o usu·rio alvo j· recebeu um convite de amizade do remetente.
      */
     public void adicionarAmigo(String id, String amigo) throws UsuarioNaoCadastradoException, UsuarioAdicionandoASiMesmoException, UsuarioJaAmigoException, UsuarioJaAmigoEsperandoException {
         if (!sessoes.containsKey(id)) {
@@ -205,12 +205,12 @@ public class Sistema implements Serializable {
     }
 
     /**
-     * Envia um recado de um usu√°rio para outro.
+     * Envia um recado de um usu·rio para outro.
      *
-     * @param id           O identificador da sess√£o do remetente.
-     * @param destinatario O login do usu√°rio destinat√°rio.
-     * @param recado       O conte√∫do do recado a ser enviado.
-     * @throws UsuarioNaoCadastradoException Se o usu√°rio remetente n√£o estiver cadastrado.
+     * @param id           O identificador da sess„o do remetente.
+     * @param destinatario O login do usu·rio destinat·rio.
+     * @param recado       O conte˙do do recado a ser enviado.
+     * @throws UsuarioNaoCadastradoException Se o usu·rio remetente n„o estiver cadastrado.
      * @throws UsuarioEnviandoRecadoASiMesmoException Se o remetente tentar enviar um recado para si mesmo.
      */
     public void enviarRecado(String id, String destinatario, String recado) throws UsuarioNaoCadastradoException, UsuarioEnviandoRecadoASiMesmoException {
@@ -228,12 +228,12 @@ public class Sistema implements Serializable {
     }
 
     /**
-     * L√™ o recado de um usu√°rio identificado pelo ID da sess√£o.
+     * LÍ o recado de um usu·rio identificado pelo ID da sess„o.
      *
-     * @param id O identificador da sess√£o do usu√°rio.
-     * @return O recado do usu√°rio.
-     * @throws UsuarioNaoCadastradoException Se o usu√°rio n√£o estiver cadastrado.
-     * @throws NaoHaRecadosException Se n√£o houver recados para o usu√°rio.
+     * @param id O identificador da sess„o do usu·rio.
+     * @return O recado do usu·rio.
+     * @throws UsuarioNaoCadastradoException Se o usu·rio n„o estiver cadastrado.
+     * @throws NaoHaRecadosException Se n„o houver recados para o usu·rio.
      */
     public String lerRecado(String id) throws UsuarioNaoCadastradoException, NaoHaRecadosException {
         if (!sessoes.containsKey(id)) {
@@ -269,7 +269,7 @@ public class Sistema implements Serializable {
     }
 
     /**
-     * Reseta o sistema, apagando todos os dados e sess√µes.
+     * Reseta o sistema, apagando todos os dados e sessıes.
      */
     public void zerarSistema() {
         usuarios.clear();

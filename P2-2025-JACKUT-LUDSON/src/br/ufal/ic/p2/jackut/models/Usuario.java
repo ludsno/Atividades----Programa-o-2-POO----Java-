@@ -5,54 +5,54 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * Representa um usu√°rio do sistema Jackut.
- * Cont√©m informa√ß√µes de perfil, amigos, convites e recados.
+ * Representa um usu·rio do sistema Jackut.
+ * ContÈm informaÁıes de perfil, amigos, convites e recados.
  */
 /**
- * A classe Usuario representa um usu√°rio de uma rede social, contendo informa√ß√µes
+ * A classe Usuario representa um usu·rio de uma rede social, contendo informaÁıes
  * como login, senha, nome, amigos, convites recebidos, atributos personalizados
- * e recados. Ela fornece m√©todos para gerenciar essas informa√ß√µes e interagir
- * com outros usu√°rios.
+ * e recados. Ela fornece mÈtodos para gerenciar essas informaÁıes e interagir
+ * com outros usu·rios.
  *
  * <p>Principais funcionalidades:
  * <ul>
- *   <li>Verificar a senha do usu√°rio.</li>
+ *   <li>Verificar a senha do usu·rio.</li>
  *   <li>Gerenciar atributos personalizados do perfil.</li>
  *   <li>Adicionar e remover amigos.</li>
  *   <li>Gerenciar convites de amizade recebidos.</li>
  *   <li>Adicionar e ler recados.</li>
  * </ul>
  *
- * <p>Exce√ß√µes personalizadas:
+ * <p>ExceÁıes personalizadas:
  * <ul>
- *   <li>{@link AtributoNaoPreenchidoException} - Lan√ßada quando um atributo solicitado n√£o est√° preenchido.</li>
- *   <li>{@link UsuarioJaAmigoEsperandoException} - Lan√ßada ao tentar adicionar um convite j√° existente.</li>
- *   <li>{@link UsuarioJaAmigoException} - Lan√ßada ao tentar adicionar um amigo j√° existente.</li>
- *   <li>{@link NaoHaRecadosException} - Lan√ßada ao tentar ler um recado quando n√£o h√° nenhum dispon√≠vel.</li>
+ *   <li>{@link AtributoNaoPreenchidoException} - LanÁada quando um atributo solicitado n„o est· preenchido.</li>
+ *   <li>{@link UsuarioJaAmigoEsperandoException} - LanÁada ao tentar adicionar um convite j· existente.</li>
+ *   <li>{@link UsuarioJaAmigoException} - LanÁada ao tentar adicionar um amigo j· existente.</li>
+ *   <li>{@link NaoHaRecadosException} - LanÁada ao tentar ler um recado quando n„o h· nenhum disponÌvel.</li>
  * </ul>
  *
  * <p>Esta classe implementa a interface {@link Serializable}, permitindo que
  * objetos desta classe sejam serializados.
  */
 public class Usuario implements Serializable {
-    private String login; // Login do usu√°rio
-    private String senha; // Senha do usu√°rio
-    private String nome;  // Nome do usu√°rio
+    private String login; // Login do usu·rio
+    private String senha; // Senha do usu·rio
+    private String nome;  // Nome do usu·rio
 
-    // Conjunto de amigos do usu√°rio
+    // Conjunto de amigos do usu·rio
     private Set<String> amigos = new LinkedHashSet<>();
-    // Convites de amizade recebidos pelo usu√°rio
+    // Convites de amizade recebidos pelo usu·rio
     private Set<String> convitesRecebidos = new LinkedHashSet<>();
-    // Atributos personalizados do perfil do usu√°rio
+    // Atributos personalizados do perfil do usu·rio
     private Map<String, String> atributos = new HashMap<>();
-    // Fila de recados recebidos pelo usu√°rio
+    // Fila de recados recebidos pelo usu·rio
     private Queue<String> recados = new LinkedList<>();
 
     /**
      * Construtor da classe Usuario.
-     * @param login Login do usu√°rio.
-     * @param senha Senha do usu√°rio.
-     * @param nome Nome do usu√°rio.
+     * @param login Login do usu·rio.
+     * @param senha Senha do usu·rio.
+     * @param nome Nome do usu·rio.
      */
     public Usuario(String login, String senha, String nome) {
         this.login = login;
@@ -61,19 +61,19 @@ public class Usuario implements Serializable {
     }
 
     /**
-     * Verifica se a senha fornecida √© v√°lida.
+     * Verifica se a senha fornecida È v·lida.
      * @param senha Senha a ser verificada.
-     * @return true se a senha for v√°lida, false caso contr√°rio.
+     * @return true se a senha for v·lida, false caso contr·rio.
      */
     public boolean verificarSenha(String senha) {
         return this.senha.equals(senha);
     }
 
     /**
-     * Obt√©m o valor de um atributo do perfil do usu√°rio.
+     * ObtÈm o valor de um atributo do perfil do usu·rio.
      * @param atributo Nome do atributo.
      * @return Valor do atributo.
-     * @throws AtributoNaoPreenchidoException Se o atributo n√£o estiver preenchido.
+     * @throws AtributoNaoPreenchidoException Se o atributo n„o estiver preenchido.
      */
     public String getAtributo(String atributo) throws AtributoNaoPreenchidoException {
         if ("nome".equals(atributo)) {
@@ -86,7 +86,7 @@ public class Usuario implements Serializable {
     }
 
     /**
-     * Obt√©m o conjunto de amigos do usu√°rio.
+     * ObtÈm o conjunto de amigos do usu·rio.
      * @return Conjunto de amigos.
      */
     public Set<String> getAmigos() {
@@ -94,7 +94,7 @@ public class Usuario implements Serializable {
     }
 
     /**
-     * Obt√©m o conjunto de convites recebidos pelo usu√°rio.
+     * ObtÈm o conjunto de convites recebidos pelo usu·rio.
      * @return Conjunto de convites recebidos.
      */
     public Set<String> getConvitesRecebidos() {
@@ -103,8 +103,8 @@ public class Usuario implements Serializable {
 
     /**
      * Adiciona um convite ao conjunto de convites recebidos.
-     * @param login Login do usu√°rio que enviou o convite.
-     * @throws UsuarioJaAmigoEsperandoException Se o convite j√° foi enviado anteriormente.
+     * @param login Login do usu·rio que enviou o convite.
+     * @throws UsuarioJaAmigoEsperandoException Se o convite j· foi enviado anteriormente.
      */
     public void adicionarConvite(String login) throws UsuarioJaAmigoEsperandoException {
         if (convitesRecebidos.contains(login)) {
@@ -115,16 +115,16 @@ public class Usuario implements Serializable {
 
     /**
      * Remove um convite do conjunto de convites recebidos.
-     * @param login Login do usu√°rio que enviou o convite.
+     * @param login Login do usu·rio que enviou o convite.
      */
     public void removerConvite(String login) {
         convitesRecebidos.remove(login);
     }
 
     /**
-     * Adiciona um amigo ao conjunto de amigos do usu√°rio.
+     * Adiciona um amigo ao conjunto de amigos do usu·rio.
      * @param login Login do amigo a ser adicionado.
-     * @throws UsuarioJaAmigoException Se o usu√°rio j√° for amigo.
+     * @throws UsuarioJaAmigoException Se o usu·rio j· for amigo.
      */
     public void adicionarAmigo(String login) throws UsuarioJaAmigoException {
         if (amigos.contains(login)) {
@@ -134,17 +134,17 @@ public class Usuario implements Serializable {
     }
 
     /**
-     * Adiciona um recado √† fila de recados do usu√°rio.
-     * @param recado Conte√∫do do recado.
+     * Adiciona um recado ‡ fila de recados do usu·rio.
+     * @param recado Conte˙do do recado.
      */
     public void adicionarRecado(String recado) {
         recados.add(recado);
     }
 
     /**
-     * L√™ e remove o pr√≥ximo recado da fila.
+     * LÍ e remove o prÛximo recado da fila.
      * @return O recado lido.
-     * @throws NaoHaRecadosException Se n√£o houver recados.
+     * @throws NaoHaRecadosException Se n„o houver recados.
      */
     public String lerRecado() throws NaoHaRecadosException {
         if (recados.isEmpty()) {
@@ -154,7 +154,7 @@ public class Usuario implements Serializable {
     }
 
     /**
-     * Edita ou adiciona um atributo ao perfil do usu√°rio.
+     * Edita ou adiciona um atributo ao perfil do usu·rio.
      * @param atributo Nome do atributo.
      * @param valor Valor do atributo.
      */
