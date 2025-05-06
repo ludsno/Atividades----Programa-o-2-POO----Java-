@@ -77,7 +77,7 @@ A persistência foi ampliada para incluir comunidades e relacionamentos.
 
 O diagrama de classes foi atualizado para refletir as mudanças no design, incluindo as novas funcionalidades e classes adicionadas.
 
-![Editor _ Mermaid Chart-2025-05-03-034209.svg](Editor%20_%20Mermaid%20Chart-2025-05-03-034209.svg)
+![Editor _ Mermaid Chart-2025-05-05-235731.svg](Editor%20_%20Mermaid%20Chart-2025-05-05-235731.svg)
 
 ## 7. Conclusão
 
